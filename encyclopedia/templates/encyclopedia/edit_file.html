@@ -1,0 +1,34 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit {{ title }}
+{% endblock %}
+
+{% block body %}
+<h1>Edit Page: </h1><br><h2>{{title}}</h2>
+<div class="container">
+{% if error %}
+<h2 align="center">404 Not found</h2>
+{%else%}
+{%if message%}
+  <div class="alert alert-danger" style="text-align: center;" role="alert">
+    {{message}}
+  </div>
+  {%endif%}
+  <form method="POST">
+    {% csrf_token%}
+    <div class="form mt-3">
+      <div>
+        <label for="content">Content</label>
+        <textarea class="form-control" id="content" cols="40" name="content" rows="20" placeholder="Write page content in markdown">
+        {%if content%}
+          {{content}}
+        {%endif%}
+        </textarea>
+      </div>
+      <input type="submit" value="Save" class="btn btn-success my-3" />
+    </div>
+  </form>
+  {%endif%}
+</div>
+{% endblock %}

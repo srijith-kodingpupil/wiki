@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+{% load md %}
+
+{% block title %}
+    {{ e_title }}
+{% endblock %}
+
+
+
+{% block body %}
+    {%if error%}
+    <div class="alert alert-danger" style="text-align: center;" role="alert">
+    {{message}}
+    </div>
+    {%endif%}
+    <a class="btn btn-primary" href="{% url 'edit' e_title %}" role="button">Edit</a>
+    {{ e_content|markdown|safe }}
+{% endblock %}
